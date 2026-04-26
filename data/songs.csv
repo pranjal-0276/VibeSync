@@ -1,0 +1,56 @@
+song_name,artist,energy,tempo,valence,danceability,weather_label
+Sunrise Smile,The Daylights,0.82,122,0.89,0.78,Sunny
+Golden Roads,Wave Atlas,0.75,118,0.81,0.72,Sunny
+Blue Umbrella,Nova Drift,0.42,92,0.36,0.48,Rainy
+Rainy Letters,Velvet Tone,0.38,88,0.32,0.44,Rainy
+Cloud Waltz,Silver Echo,0.50,102,0.55,0.59,Cloudy
+Skyline Thoughts,Moon Harbor,0.47,96,0.52,0.53,Cloudy
+Snowlight,Polar Notes,0.31,80,0.40,0.33,Snowy
+Winter Window,Quiet Lantern,0.28,76,0.35,0.30,Snowy
+Wind Runner,Neon Flights,0.85,128,0.74,0.80,Windy
+Freeway Pulse,Beat Mechanic,0.88,132,0.69,0.84,Windy
+Midnight Calm,Ocean Reverie,0.24,70,0.62,0.29,Any
+Soft Horizon,Amber Trails,0.36,84,0.58,0.46,Any
+Firestep,Ultra Motion,0.93,140,0.77,0.90,Any
+Heartbeat City,Prism Voltage,0.90,136,0.73,0.87,Any
+Fading Polaroid,Dusk Harbor,0.22,68,0.20,0.25,Any
+Quiet Rainroom,Solace Frame,0.18,64,0.18,0.22,Rainy
+Summer Echo,Coastline Kids,0.79,124,0.88,0.76,Sunny
+Neon Kite,City Bloom,0.84,126,0.82,0.79,Sunny
+Golden Breeze,Horizon Avenue,0.72,116,0.79,0.70,Sunny
+Palm Street,Drift Motel,0.69,112,0.74,0.68,Sunny
+Sunset Candy,Retro Parade,0.76,120,0.86,0.73,Sunny
+Monsoon Paper,Glass Harbor,0.35,86,0.30,0.40,Rainy
+Window Drops,Noir Cabin,0.27,74,0.24,0.28,Rainy
+Night Umbrella,Urban Tide,0.41,90,0.37,0.45,Rainy
+Grey Avenue,Hush Lantern,0.33,82,0.29,0.36,Rainy
+Soft Thunder,Velvet Keys,0.46,94,0.43,0.50,Rainy
+Silver Overcast,North Echo,0.52,100,0.57,0.60,Cloudy
+Fog Walk,Metro Pines,0.44,92,0.49,0.50,Cloudy
+Pale Afternoon,River Atlas,0.48,98,0.54,0.56,Cloudy
+Dusty Sky,Paper Signals,0.55,104,0.59,0.61,Cloudy
+Quiet Transit,Room Eleven,0.40,88,0.46,0.47,Cloudy
+Ice Lantern,Arctic Waves,0.26,72,0.34,0.27,Snowy
+Cold Morning,White Tape,0.30,78,0.39,0.32,Snowy
+Crystal Street,Frozen Park,0.34,82,0.44,0.35,Snowy
+Woolen Lights,Snowline Motel,0.29,75,0.37,0.31,Snowy
+North Star Taxi,Winter Bloom,0.37,86,0.48,0.40,Snowy
+Storm Drive,Jet Arcade,0.89,134,0.71,0.85,Windy
+Rush Circuit,Turbo Bloom,0.91,138,0.75,0.88,Windy
+Wild Current,Open Voltage,0.86,130,0.68,0.82,Windy
+Sky Sprint,Future Mile,0.83,127,0.66,0.78,Windy
+Paper Glider,East Route,0.80,123,0.64,0.74,Windy
+Late Coffee,Cozy Hour,0.39,90,0.60,0.49,Any
+Daydream Alley,Indigo Town,0.58,108,0.67,0.63,Any
+Pulse Fiction,Chrome Valley,0.92,142,0.78,0.91,Any
+Mirror Disco,Lunar Tape,0.87,129,0.72,0.83,Any
+Dawn Therapy,Simple Forms,0.32,79,0.50,0.38,Any
+Velvet Sunrise,Parallel Hearts,0.66,112,0.76,0.69,Any
+Raincoat Radio,North Pier,0.43,95,0.45,0.52,Rainy
+Moon Cabin,Silent Meadow,0.25,69,0.41,0.26,Any
+Bright Carousel,City Parade,0.81,125,0.87,0.77,Sunny
+Cloudline Diary,Slow Transit,0.49,97,0.53,0.55,Cloudy
+Polar Cinema,Icefield Club,0.33,81,0.42,0.36,Snowy
+Gale Riders,Fast Harbour,0.90,137,0.70,0.86,Windy
+After Rain Glow,Street Meadow,0.54,103,0.62,0.64,Rainy
+Ocean Notebook,Blue Engine,0.57,109,0.65,0.66,Any

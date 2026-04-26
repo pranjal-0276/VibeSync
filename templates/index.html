@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibesync</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="aurora aurora-one"></div>
+    <div class="aurora aurora-two"></div>
+    <div class="container">
+        <p class="brand-pill">Now Playing: Vibesync</p>
+        <h1>Vibesync</h1>
+        <p class="subtitle">Tell us your mood and weather, and we will build your perfect vibe mix.</p>
+
+        <div class="form-card">
+            <label for="moodSelect">How are you feeling?</label>
+            <select id="moodSelect">
+                <option value="">Select your mood</option>
+                <option value="happy">Happy</option>
+                <option value="sad">Sad</option>
+                <option value="calm">Calm</option>
+                <option value="angry">Angry</option>
+                <option value="stressed">Stressed</option>
+                <option value="excited">Excited</option>
+                <option value="relaxed">Relaxed</option>
+                <option value="motivated">Motivated</option>
+                <option value="romantic">Romantic</option>
+                <option value="tired">Tired</option>
+            </select>
+
+            <label for="weatherSelect">Current weather</label>
+            <select id="weatherSelect">
+                <option value="Any">Any</option>
+                <option value="Sunny">Sunny</option>
+                <option value="Rainy">Rainy</option>
+                <option value="Cloudy">Cloudy</option>
+                <option value="Snowy">Snowy</option>
+                <option value="Windy">Windy</option>
+            </select>
+
+            <button id="recommendBtn">Get Recommendations</button>
+        </div>
+
+        <div id="statusText" class="status"></div>
+        <ul id="resultsList" class="results"></ul>
+
+        <section class="insights-card">
+            <h2>Vibe Analytics</h2>
+            <p class="insight-subtitle">These charts are generated from K-Means clustering results.</p>
+            <div class="charts-grid">
+                <div class="chart-box">
+                    <h3>Cluster Distribution</h3>
+                    <canvas id="clusterChart"></canvas>
+                </div>
+                <div class="chart-box">
+                    <h3>Average Features by Cluster</h3>
+                    <canvas id="featureChart"></canvas>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
