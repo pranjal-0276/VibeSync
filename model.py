@@ -2,21 +2,11 @@ import re
 from pathlib import Path
 from typing import Dict, List
 from urllib.parse import quote_plus
-
 import numpy as np
 import pandas as pd
 from sklearn.cluster import KMeans
 from sklearn.linear_model import LogisticRegression
-
-
 class SongRecommender:
-    """
-    Beginner-friendly recommendation engine.
-    1) Cluster songs with K-Means based on audio features.
-    2) Train a simple classifier to map mood text -> cluster.
-    3) Filter recommendations by weather and cluster.
-    """
-
     def __init__(self, dataset_path: str = "data/songs.csv") -> None:
         self.dataset_path = Path(dataset_path)
         self.df = self._load_dataset()
@@ -37,7 +27,6 @@ class SongRecommender:
         self._train_models()
 
     def _load_dataset(self) -> pd.DataFrame:
-        """Load and lightly validate song data."""
         if not self.dataset_path.exists():
             raise FileNotFoundError(f"Dataset not found: {self.dataset_path}")
 
@@ -55,11 +44,9 @@ class SongRecommender:
         if missing:
             raise ValueError(f"Missing required columns: {missing}")
 
-        # Add weather_label column if not present so filtering logic is consistent.
         if "weather_label" not in df.columns:
             df["weather_label"] = "Any"
 
-        # Ensure numeric feature columns are numbers.
         numeric_columns = ["energy", "tempo", "valence", "danceability"]
         for col in numeric_columns:
             df[col] = pd.to_numeric(df[col], errors="coerce")
@@ -69,14 +56,11 @@ class SongRecommender:
 
     def _train_models(self) -> None:
         """Train K-Means clusters and a simple mood -> cluster classifier."""
-        # Use numpy array for feature vectors as requested.
         features = self.df[["energy", "tempo", "valence", "danceability"]].to_numpy()
 
-        # Keep this simple: 4 clusters for broad vibe groups.
         self.kmeans = KMeans(n_clusters=4, random_state=42, n_init=10)
         self.df["cluster"] = self.kmeans.fit_predict(features)
 
-        # Build tiny training data from mood keywords.
         mood_training_data = self._build_mood_training_data()
         mood_features = np.array([item["features"] for item in mood_training_data])
         mood_labels = np.array([item["cluster"] for item in mood_training_data])
@@ -91,11 +75,9 @@ class SongRecommender:
         """
         mood = mood_text.lower().strip()
 
-        # Default middle values.
         energy = 0.5
         valence = 0.5
 
-        # Basic keyword rules (beginner-friendly and easy to modify).
         if re.search(r"\b(sad|down|upset|lonely|heartbroken)\b", mood):
             energy, valence = 0.2, 0.2
         elif re.search(r"\b(happy|joy|great|good|awesome)\b", mood):
@@ -112,10 +94,6 @@ class SongRecommender:
         return np.array([energy, valence], dtype=float)
 
     def _build_mood_training_data(self) -> List[Dict]:
-        """
-        Create synthetic training examples and label them with nearest cluster.
-        This keeps the classifier simple and independent from external labeled data.
-        """
         seed_examples = [
             "sad",
             "happy",
@@ -132,13 +110,12 @@ class SongRecommender:
         items = []
         for mood_word in seed_examples:
             mood_vec = self._mood_to_feature_vector(mood_word)
-            # Expand [energy, valence] -> [energy, tempo, valence, danceability]
             expanded_vec = np.array(
                 [
                     mood_vec[0],
-                    70 + mood_vec[0] * 80,  # rough tempo estimate
+                    70 + mood_vec[0] * 80,  
                     mood_vec[1],
-                    0.3 + mood_vec[0] * 0.6,  # rough danceability estimate
+                    0.3 + mood_vec[0] * 0.6,  
                 ],
                 dtype=float,
             )
@@ -162,23 +139,14 @@ class SongRecommender:
         return f"https://open.spotify.com/search/{query}"
 
     def recommend_songs(self, mood: str, weather: str, top_n: int = 5) -> List[Dict]:
-        """
-        Main recommendation function requested:
-        - Predict cluster from mood text
-        - Filter songs by cluster + weather
-        - Return top N songs
-        """
         if not mood:
             mood = "neutral"
 
         mood_vec = self._mood_to_feature_vector(mood)
         predicted_cluster = int(self.mood_classifier.predict([mood_vec])[0])
         normalized_weather = self._normalize_weather(weather)
-
-        # Filter by predicted cluster first.
         candidates = self.df[self.df["cluster"] == predicted_cluster].copy()
 
-        # Then weather filter (keep 'Any' songs available for all weathers).
         if normalized_weather and normalized_weather != "Any":
             weather_filtered = candidates[
                 (candidates["weather_label"].str.lower() == normalized_weather.lower())
@@ -187,16 +155,13 @@ class SongRecommender:
             if not weather_filtered.empty:
                 candidates = weather_filtered
 
-        # Smart enhancement: for low mood, sort from low->high valence to simulate uplift.
         if self._needs_mood_improvement(mood):
             candidates = candidates.sort_values(by="valence", ascending=True)
         else:
-            # Otherwise prefer energetic/positive songs.
             candidates = candidates.sort_values(
                 by=["valence", "energy"], ascending=[False, False]
             )
 
-        # Fallback if cluster-filtered list is too small.
         if candidates.empty:
             candidates = self.df.copy().sort_values(by="valence", ascending=False)
 
@@ -211,11 +176,6 @@ class SongRecommender:
         return recommendations
 
     def get_ml_insights(self) -> Dict:
-        """
-        Return simple chart-ready ML insights:
-        - Number of songs in each K-Means cluster
-        - Average feature values per cluster
-        """
         cluster_counts = (
             self.df["cluster"]
             .value_counts()
@@ -230,7 +190,6 @@ class SongRecommender:
             .reset_index()
         )
 
-        # Convert numpy/pandas numeric types to plain Python types for safe JSON responses.
         cluster_distribution = [
             {"cluster": int(row["cluster"]), "count": int(row["count"])}
             for _, row in cluster_counts.iterrows()
