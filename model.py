@@ -55,7 +55,6 @@ class SongRecommender:
         return df
 
     def _train_models(self) -> None:
-        """Train K-Means clusters and a simple mood -> cluster classifier."""
         features = self.df[["energy", "tempo", "valence", "danceability"]].to_numpy()
 
         self.kmeans = KMeans(n_clusters=4, random_state=42, n_init=10)
@@ -69,10 +68,7 @@ class SongRecommender:
         self.mood_classifier.fit(mood_features, mood_labels)
 
     def _mood_to_feature_vector(self, mood_text: str) -> np.ndarray:
-        """
-        Convert mood text into a simple numeric feature vector:
-        [energy_hint, valence_hint]
-        """
+       
         mood = mood_text.lower().strip()
 
         energy = 0.5
