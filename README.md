@@ -59,6 +59,4 @@ npm test
 
 This project is licensed under the MIT License.
 
-<div align="center">
-🎵 Built with code, powered by vibes.
-</div> ::contentReference[oaicite:2]{index=2}
+🎵 Built with code, powered by vibes
